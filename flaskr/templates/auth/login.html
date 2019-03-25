@@ -1,0 +1,52 @@
+<!doctype html>
+<title>{% block title %}{% endblock %}Hệ Thống Điểm Danh DHBK-DHDN</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+{% block header %}{% endblock %}
+{% block content %}
+  <h1>Hệ Thống Điểm Danh Sinh Viên</h1>
+
+	<div class="w3layoutscontaineragileits">
+	<h2>Thực Hiện Ðăng Nhập</h2>
+		<form method="POST">
+			<input type="text" id ="username" Name="username" placeholder="Tên Đăng Nhập" required="">
+			<input type="password"id ="password" Name="password" placeholder="Mật Khẩu" required="">
+			<ul class="agileinfotickwthree">
+				<li>
+					<input type="checkbox" id="brand1" value="">
+					<label for="brand1"><span></span>Lưu Tài Khoản</label>
+					<a href="#">Quên Mật Khẩu?</a>
+				</li>
+			</ul>
+			<div class="aitssendbuttonw3ls">
+				<input type="submit" value="Đăng Nhập">
+				<p> Tạo Tài Khoản Mới <span>-></span><a class="w3_play_icon1" href="{{ url_for('auth.register') }}"> Đăng Ký Ngay</a></p>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+  <div class="w3footeragile"><p> &copy; 2018-2019 Trường Đại Học Bách Khoa-Ðại Học Ðà Nẵng</p></div>
+
+	
+	<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.4.min.js') }}"></script>
+	<!-- pop-up-box-js-file -->  
+  <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.magnific-popup.js') }}"></script>
+		
+	<!--//pop-up-box-js-file -->
+	<script>
+		$(document).ready(function() {
+		$('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
+			type: 'inline',
+			fixedContentPos: false,
+			fixedBgPos: true,
+			overflowY: 'auto',
+			closeBtnInside: true,
+			preloader: false,
+			midClick: true,
+			removalDelay: 300,
+			mainClass: 'my-mfp-zoom-in'
+		});
+																		
+		});
+	</script>
+{% endblock %}
