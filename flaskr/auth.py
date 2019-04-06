@@ -14,6 +14,9 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        name = request.form['UName']
+        email = request.form['email']
+
         db = get_db()
         error = None
 
@@ -28,8 +31,8 @@ def register():
 
         if error is None:
             db.execute(
-                'INSERT INTO user (username, password) VALUES (?, ?)',
-                (username, password)
+                'INSERT INTO user (username, password,UName,Email) VALUES (?, ?, ?, ?)',
+                (username, password, name, email)
             )
             db.commit()
             return redirect(url_for('auth.login'))
@@ -37,6 +40,8 @@ def register():
         flash(error)
 
     return render_template('auth/register.html')
+
+
 
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
@@ -62,6 +67,7 @@ def login():
         flash(error)
 
     return render_template('auth/login.html')
+
 
 @bp.before_app_request
 def load_logged_in_user():
