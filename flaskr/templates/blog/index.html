@@ -12,14 +12,12 @@
     <article class="post">
       <header>
         <div>
-          <h1>{{ post['title'] }}</h1>
-          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+          <h1>{{ post['MSSV'] }}</h1>
+          <div class="about">by {{ post['HoTen'] }}</div>
         </div>
-        {% if g.user['id'] == post['author_id'] %}
-          <a class="action" >Edit</a>
-        {% endif %}
+        
       </header>
-      <p class="body">{{ post['body'] }}</p>
+      <p class="body">{{ post['MaHocPhan'] }}</p>
     </article>
     {% if not loop.last %}
       <hr>
