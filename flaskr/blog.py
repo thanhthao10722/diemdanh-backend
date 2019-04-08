@@ -13,8 +13,8 @@ def index():
     db = get_db()
     posts = db.execute(
         'SELECT sv.MSSV, sv.HoTen, dk.MaHocPhan, MonHoc, HocKy, DiemDanh '
-        'FROM SinhVien sv JOIN DangKy dk ON sv.MSSV=dk.MSSV'
-        'JOIN HocPhan ON HocPhan.MaHocPhan = dk.MaHocPhan'
+        'FROM SinhVien sv JOIN DangKy dk ON sv.MSSV=dk.MSSV '
+        'JOIN HocPhan ON HocPhan.MaHocPhan = dk.MaHocPhan '
         'ORDER BY HoTen DESC'
     ).fetchall()
 
