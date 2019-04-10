@@ -1,0 +1,15 @@
+<!doctype html>
+<title>{% block title %}{% endblock %}Điểm Danh Sinh Viên</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='check.css') }}">
+
+{% block header %}{% endblock %}
+{% block content %}
+ <body class="text-center">
+    <form class="form-signin" >
+       <div class="wrap-img">
+            <img class="mb-4" src="{{ url_for('static', filename='images/uncheck.png') }}">
+       </div>
+      <div class="wrap-info"><h1 class="h3 mb-3 font-weight-normal">Sinh Viên Không Tồn Tại Trong Lớp Học Phần</h1></div>
+    </form>
+  </body>
+{% endblock %}

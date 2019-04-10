@@ -1,14 +1,43 @@
-{% extends 'base.html' %}
-{% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
-{% endblock %}
+<!doctype html>
+<title>{% block title %}{% endblock %}Hệ Thống Điểm Danh DHBK-DHDN</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='restyle.css') }}">
 
+{% block header %}{% endblock %}
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
-  </form>
+<div id="facebook-Bar">
+    <div id="facebook-Frame">
+    </div>
+</div>
+
+<div class="loginbox radius">
+  <h2 style="color:#141823; text-align:center;">Đăng Ký Tài Khoản</h2>
+  <div class="loginboxinner radius">
+    <div class="loginheader">
+      <h4 class="title">Hệ Thống Điểm Danh Sinh Viên.</h4>
+    </div>
+    <!--loginheader-->
+    <div class="loginform">
+      <form id="login" action="" method="post">
+      
+        <p>
+          <input type="text" id="email" name="UName" placeholder="Họ Tên" title="Nhập Họ Tên" class="radius" />
+        </p>
+        <p>
+          <input type="text" id="remail" name="username" placeholder="Tên Đăng Nhập" title="Nhập Tên Đăng Nhập"class="radius" />
+        </p>
+        <p>
+          <input type="password" id="password" name="password" placeholder="Nhập Mật Khẩu" class="radius" />
+        </p>
+    <p>
+    <input type="email" id="email" name="email" placeholder="Email" title="Nhập Email" required="">
+    </p>
+        <p>
+          <button class="radius title" name="signup">Đăng Ký</button>
+        </p>
+      </form>
+    </div>
+    </div>
+</div>
+
+
 {% endblock %}
