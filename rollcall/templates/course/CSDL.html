@@ -1,0 +1,496 @@
+<!doctype html>
+<title>{% block title %}{% endblock %}Trang Chủ</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='nicdark_style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='nicdark_responsive.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='settings.css') }}">
+
+{% block header %}
+
+{% endblock %}
+<SCRIPT LANGUAGE="JavaScript">
+      function confirmAction() 
+      {
+        return confirm("Bạn chắc chắn muốn xóa ?")
+      }
+ 
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+      function confirmCheck() 
+      {
+        return confirm("Bạn chắc chắn muốn hoàn tất điểm danh ?")
+      }
+ 
+</SCRIPT>
+
+<SCRIPT LANGUAGE="JavaScript">
+      function confirmReset() 
+      {
+        return confirm("Bạn chắc chắn muốn reset lại tình trạng điểm danh ?")
+      }
+ 
+</SCRIPT>
+{% block content %}
+<!DOCTYPE html> 
+<body id="start_nicdark_framework">
+
+<div class="nicdark_section nicdark_navigation">
+    
+    <div class="nicdark_menu_boxed">
+
+        <div class="nicdark_section nicdark_bg_greydark nicdark_displaynone_responsive">
+            <div class="nicdark_container nicdark_clearfix">
+                <div class="grid grid_6">
+                    <div class="nicdark_focus">
+                        <h6 class="white">
+                            <i class="icon-calendar-outlilne"></i>&nbsp;&nbsp;SỰ KIỆN</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="grey">·</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="icon-pencil-1"></i>&nbsp;&nbsp;TIN TỨC</a>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="grey">·</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="icon-phone-outline"></i>&nbsp;&nbsp;(+84.0236) 3842308
+                        </h6>
+                    </div>
+                </div>
+                <div class="grid grid_6 right">
+                    <div class="nicdark_focus right">
+                        <h6 class="white">
+                             {% if g.user %}
+                                <i class="icon-plus-outline"></i><a >Xin Chào {{ g.user['UName'] }}   </a><span class="grey">·</span>
+                                <i class="icon-plus-outline"></i><a  href="{{ url_for('auth.logout') }}">Đăng Xuất</a>
+                            {% else %}
+                                <i class="icon-plus-outline"></i><a href="{{ url_for('auth.register') }}">Đăng Ký   </a>
+                                <i class="icon-plus-outline"></i><a  href="{{ url_for('auth.login') }}">Đăng Nhập</a>
+                             {% endif %}
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+        <div class="nicdark_section nicdark_bg_grey nicdark_shadow nicdark_radius_bottom fade-down">
+            <div class="nicdark_container nicdark_clearfix">
+                <div class="grid grid_12 percentage">                    
+                        <nav>
+                            <ul class="nicdark_menu nicdark_margin010 nicdark_padding50">
+
+                                <li class="yellow">
+                                    <a href= "{{ url_for('course.index') }}">Trang Chủ</a>
+                                </li>
+                                {% if g.user %}
+                                <li class="orange">
+                                    <a >Phòng Học</a>
+                               
+                                    
+                                </li>
+                                {% else %}
+                                 <li class="orange"><a >Phòng Học</a></li>
+                                {% endif %}
+                                {% if g.user %}
+                                <li class="red">
+                                    <a href="{{ url_for('course.create') }}">Đăng Ký Sinh Viên</a>
+                                    
+                                </li>
+                                {% else %}
+                                <li class="red"><a>Đăng Ký Sinh Viên</a></li>
+                                {% endif %}
+                                
+                            </ul>
+                        </nav>
+                </div>
+            </div>
+        </div>
+        <table  border="1px" cellpadding="0px" cellspacing="0px" width="100%" >
+        <tr height ="8px"></tr>
+        <tr  height="40px">
+			<td bgcolor="white" align="center" margin-left ="10px">Mã Số Sinh Viên</td>
+			<td bgcolor="white" width="30%" align="center">Họ Tên</td>
+			<td bgcolor="white" align="center" >Mã Học Phần</td>
+			<td bgcolor="white" align="center">Lớp Học Phần</td>
+            <td bgcolor="white" align="center">Học Kỳ</td>
+            <td bgcolor="white" align="center">Tình Trạng</td>	
+            <td bgcolor="white" align="center">Ghi Chú</td>
+        </tr>
+        {% for post in posts %}
+        <tr height="40px">
+            <td bgcolor="white" align="center">{{ post['MSSV'] }}</td>
+            <td bgcolor="white" align="center" >{{ post['FullName'] }}</td>
+            <td bgcolor="white" align="center">{{ post['IDCourse'] }}</td>
+            <td bgcolor="white" align="center">{{ post['CourseName'] }}</td>
+            <td bgcolor="white" align="center">{{ post['Semester'] }}</td>
+            <td bgcolor="white" align="center">{{ post['Status'] }}</td>
+            <td bgcolor="white" align="center"><a href = "{{ url_for('course.delete', IDSC = post['IDSC'], MSSV=post['MSSV'])}}" onclick="return confirmAction()">Xóa Sinh Viên</td>
+        </tr>
+        {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+</table>
+</div>
+</div>
+
+<section class="nicdark_section" align="center">
+
+	<div class="tp-banner-container">
+		<div class="nicdark_slide1" >
+			
+		</div>
+	</div>
+
+</section>
+<!--end section--><!--start section-->
+
+<section class="nicdark_section nicdark_margintop45_negative">
+
+    <!--start nicdark_container-->
+    <div class="nicdark_container nicdark_clearfix">
+		
+		<div class="grid grid_12 percentage nomargin">    
+			<div class="nicdark_textevidence center">
+			    <div class="nicdark_textevidence nicdark_width_percentage25 nicdark_bg_blue nicdark_shadow nicdark_radius_left">
+			        <div class="nicdark_textevidence">
+			            <div class="nicdark_margin30">
+			                <h2 class="white subtitle">GIỚI THIỆU</h2>
+			           </div>
+			            <i class="nicdark_zoom icon-pencil-2 nicdark_iconbg left extrabig blue nicdark_displaynone_ipadland nicdark_displaynone_ipadpotr"></i>
+			        </div>
+			    </div>
+			    <div class="nicdark_textevidence nicdark_width_percentage25 nicdark_bg_yellow nicdark_shadow">
+			        <div class="nicdark_textevidence">
+			            <div class="nicdark_margin30">
+			                <h2 class="white subtitle">TUYỂN SINH</h2>
+			           </div>
+			            <i class="nicdark_zoom icon-money-1 nicdark_iconbg left extrabig yellow nicdark_displaynone_ipadland nicdark_displaynone_ipadpotr"></i>
+			        </div>
+			    </div>
+			    <div class="nicdark_textevidence nicdark_width_percentage25 nicdark_bg_orange nicdark_shadow">
+			        <div class="nicdark_textevidence">
+			            <div class="nicdark_margin30">
+			                <h2 class="white subtitle">ĐÀO TẠO</h2>
+			           </div>
+			            <i class="nicdark_zoom icon-music-2 nicdark_iconbg left extrabig orange nicdark_displaynone_ipadland nicdark_displaynone_ipadpotr"></i>
+			        </div>
+			    </div>
+			    <div class="nicdark_textevidence nicdark_width_percentage25 nicdark_bg_green nicdark_shadow nicdark_radius_right">
+			        <div class="nicdark_textevidence">
+			            <div class="nicdark_margin30">
+			                <h2 class="white subtitle">HỖ TRỢ</h2>
+			           </div>
+			            <i class="nicdark_zoom icon-graduation-cap-1 nicdark_iconbg left extrabig green nicdark_displaynone_ipadland nicdark_displaynone_ipadpotr"></i>
+			        </div>
+			    </div>
+			    <div class="nicdark_space5"></div>
+			</div>
+		</div>
+
+	</div>
+   
+     
+</section>
+
+
+
+<div class="nicdark_space3 nicdark_bg_gradient"></div>
+
+
+<section class="nicdark_section nicdark_bg_greydark">
+
+    <div class="nicdark_container nicdark_clearfix">
+
+        <div class="nicdark_space30"></div>
+
+        <div class="grid grid_3 nomargin percentage">
+
+            <div class="nicdark_space20"></div>
+
+            <div class="nicdark_margin10">
+                <h4 class="white">Tuyển Sinh Và Đào Tạo</h4>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+                <div class="nicdark_space20"></div>
+                <p class="white">Thông Tin Tuyển Sinh</p>
+				<p class="white">Đào Tạo Đại Học</p>
+				<p class="white">Đào Tạo Sau Đại Học</p>
+				<p class="white">Đào Tạo Thường Xuyên</p>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+                <div class="nicdark_space20"></div>
+                <a  class="nicdark_btn_icon nicdark_bg_orange small nicdark_shadow nicdark_radius white"><i class="icon-mail-1 nicdark_rotate"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a  class="nicdark_btn_icon nicdark_bg_yellow small nicdark_shadow nicdark_radius white"><i class="icon-home nicdark_rotate"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="nicdark_btn_icon nicdark_bg_red small nicdark_shadow nicdark_radius white"><i class="icon-phone-outline nicdark_rotate"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+
+        <div class="grid grid_3 nomargin percentage">
+            
+            <div class="nicdark_space30"></div>
+
+            <div class="nicdark_marginleft10">
+                <h4 class="white">Các Liên Kết Khác</h4>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+            </div>
+            <div class="nicdark_space10"></div>
+
+            <a  class="nicdark_btn nicdark_bg_greydark2 small nicdark_shadow nicdark_radius white subtitle nicdark_margin10">Thư Viện</a>
+            <a  class="nicdark_btn nicdark_bg_greydark2 small nicdark_shadow nicdark_radius white subtitle nicdark_margin10">Email</a>
+			<a class="nicdark_btn nicdark_bg_greydark2 small nicdark_shadow nicdark_radius white subtitle nicdark_margin10">E-Learning</a>
+			<a class="nicdark_btn nicdark_bg_greydark2 small nicdark_shadow nicdark_radius white subtitle nicdark_margin10">Tài Liệu Số</a>
+            <a class="nicdark_btn nicdark_bg_greydark2 small nicdark_shadow nicdark_radius white subtitle nicdark_margin10">Hệ Thống Tác Nghiệp</a>
+			<a  class="nicdark_btn nicdark_bg_greydark2 small nicdark_shadow nicdark_radius white subtitle nicdark_margin10">Hệ Thống Thông Tin Sinh Viên</a>
+            
+            
+            
+        </div>
+
+        <div class="grid grid_3 nomargin percentage">
+
+            <div class="nicdark_space20"></div>
+            
+            <div class="nicdark_margin10">
+                <h4 class="white">HÌNH ẢNH NHÀ TRƯỜNG</h4>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+            </div>
+            
+
+            <div class="grid nomargin grid_4 percentage">
+                <div class="nicdark_margin10">
+                    <img alt="" class="nicdark_radius nicdark_opacity nicdark_focus" src="{{ url_for('static', filename='images/1.jpg') }}">
+                </div>
+            </div>
+            
+            <div class="grid nomargin grid_4 percentage">
+                <div class="nicdark_margin10">
+                    <img alt="" class="nicdark_radius nicdark_opacity nicdark_focus" src="{{ url_for('static', filename='images/2.jpg') }}">
+                </div>
+            </div>
+            
+            <div class="grid nomargin grid_4 percentage">
+                <div class="nicdark_margin10">
+                    <img alt="" class="nicdark_radius nicdark_opacity nicdark_focus" src="{{ url_for('static', filename='images/3.jpg') }}">
+                </div>
+            </div>
+            
+            <div class="grid nomargin grid_4 percentage">
+                <div class="nicdark_margin10">
+                    <img alt="" class="nicdark_radius nicdark_opacity nicdark_focus" src="{{ url_for('static', filename='images/9.jpg') }}">
+                </div>
+            </div>
+            
+            <div class="grid nomargin grid_4 percentage">
+                <div class="nicdark_margin10">
+                    <img alt="" class="nicdark_radius nicdark_opacity nicdark_focus" src="{{ url_for('static', filename='images/8.jpg') }}">
+                </div>
+            </div>
+            
+            <div class="grid nomargin grid_4 percentage">
+                <div class="nicdark_margin10">
+                    <img alt="" class="nicdark_radius nicdark_opacity nicdark_focus" src="img/slide/6.jpg">
+                </div>
+            </div>
+			<div class="grid nomargin grid_4 percentage">
+                <div class="nicdark_margin10">
+                    <img alt="" class="nicdark_radius nicdark_opacity nicdark_focus" src="{{ url_for('static', filename='images/10.jpg') }}">
+                </div>
+            </div>
+            
+
+        </div>
+
+        <div class="grid grid_3 nomargin percentage">
+
+            <div class="nicdark_space20"></div>
+
+            <div class="nicdark_margin10">
+                <h4 class="white">LIÊN HỆ </h4>
+                <div class="nicdark_space20"></div>
+                <div class="nicdark_divider left small"><span class="nicdark_bg_white nicdark_radius"></span></div>
+                <div class="nicdark_space20"></div>
+                
+
+                <input class="nicdark_bg_greydark2 nicdark_radius nicdark_shadow white small subtitle" type="text" value="" placeholder="EMAIL">
+                <div class="nicdark_space20"></div>
+                <textarea rows="3" class="nicdark_bg_greydark2 nicdark_radius nicdark_shadow white small subtitle" placeholder="MESSAGE"></textarea>
+                <div class="nicdark_space20"></div>
+                <!--<input class="nicdark_btn nicdark_bg_green small nicdark_shadow nicdark_radius white nicdark_press" type="submit" value="SEND">-->
+                <a href="submit-message.html" class="nicdark_mpopup_ajax nicdark_btn nicdark_bg_green small nicdark_shadow nicdark_radius white nicdark_press">GỬI</a>
+            </div>
+        </div> 
+
+        <div class="nicdark_space50"></div> 
+
+    </div>
+    <!--end nicdark_container-->
+            
+</section>
+<!--end section-->
+
+
+
+<!--end section--> </div>
+    </div>
+
+    <!--main-->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script> 
+    <script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script> 
+    <script src="{{ url_for('static', filename='js/excanvas.js') }}"></script> 
+    
+
+    <!--plugins-->
+    <script src="{{ url_for('static', filename='js/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.themepunch.revolution.min.js') }}"></script>
+
+    <!--menu-->
+    <script src="{{ url_for('static', filename='js/superfish.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/tinynav.min.js') }}"></script>
+
+    <!--other-->
+    <script src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery.magnific-popup.min1.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/scroolto.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery.nicescroll.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery.inview.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery.parallax-1.1.3.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery.countTo.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/jquery.countdown.js') }}"></script>
+    
+    <!--settings-->
+    <script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+    <!--custom js-->
+    <script type="text/javascript">
+	jQuery(document).ready(function() {
+
+
+		//START SLIDE
+		jQuery('.nicdark_slide1').show().revolution(
+		{
+			dottedOverlay:"none",
+			delay:16000,
+			startwidth:1170,
+			startheight:650,
+			hideThumbs:200,
+			
+			thumbWidth:100,
+			thumbHeight:50,
+			thumbAmount:5,
+			
+			navigationType:"none",
+			navigationArrows:"solo",
+			navigationStyle:"preview2",
+			
+			touchenabled:"on",
+			onHoverStop:"on",
+			
+			swipe_velocity: 0.7,
+			swipe_min_touches: 1,
+			swipe_max_touches: 1,
+			drag_block_vertical: false,
+									
+			parallax:"mouse",
+			parallaxBgFreeze:"on",
+			parallaxLevels:[7,4,3,2,5,4,3,2,1,0],
+									
+			keyboardNavigation:"off",
+			
+			navigationHAlign:"center",
+			navigationVAlign:"bottom",
+			navigationHOffset:0,
+			navigationVOffset:20,
+
+			soloArrowLeftHalign:"left",
+			soloArrowLeftValign:"center",
+			soloArrowLeftHOffset:20,
+			soloArrowLeftVOffset:0,
+
+			soloArrowRightHalign:"right",
+			soloArrowRightValign:"center",
+			soloArrowRightHOffset:20,
+			soloArrowRightVOffset:0,
+					
+			shadow:0,
+			fullWidth:"on",
+			fullScreen:"off",
+
+			spinner:"spinner4",
+			
+			stopLoop:"off",
+			stopAfterLoops:-1,
+			stopAtSlide:-1,
+
+			shuffle:"off",
+			
+			autoHeight:"off",						
+			forceFullWidth:"off",						
+									
+			hideTimerBar: "on",					
+									
+			hideThumbsOnMobile:"off",
+			hideNavDelayOnMobile:1500,						
+			hideBulletsOnMobile:"off",
+			hideArrowsOnMobile:"off",
+			hideThumbsUnderResolution:0,
+			
+			hideSliderAtLimit:0,
+			hideCaptionAtLimit:0,
+			hideAllCaptionAtLilmit:0,
+			startWithSlide:0,
+			videoJsPath:"rs-plugin/videojs/",
+			fullScreenOffsetContainer: ""	
+		});
+		//END SLIDE
+		
+		
+
+		//START PARALLAX SECTIONS
+		$('#nicdark_parallax_big_image').parallax("50%", 0.3);
+		$('#nicdark_parallax_2_btns').parallax("50%", 0.3);
+		$('#nicdark_parallax_countdown').parallax("50%", 0.3);
+		$('#nicdark_parallax_counter').parallax("50%", 0.3);
+		//END PARALLAX SECTIONS
+
+		
+
+		//START COUNTDOWN GRID SECTION
+		//variables
+		var endDate = "June 06, 2015 10:30:00";
+		var grid = "grid_3";
+		//insert the class nicdark_displaynone in the var if you wnat to hide the visualization
+		var display_years = "nicdark_displaynone";
+		var display_days = "";
+		var display_hours = "";
+		var display_minutes = "";
+		var display_seconds = "";
+		//call
+		$(".nicdark_countdown").countdown({
+		  date: endDate,
+		  render: function(data) {
+		    $(this.el).html("<div class=\"grid "+ grid +" "+ display_years +" \"><div class=\"nicdark_textevidence center\"><h1 class=\"subtitle white extrasize\">"+ this.leadingZeros(data.years, 4) +"</h1><div class=\"nicdark_space20\"></div><a class=\"nicdark_btn nicdark_bg_blue small nicdark_shadow nicdark_radius white\">YEARS</a><div class=\"nicdark_space5\"></div></div></div><div class=\"grid "+ grid +" "+ display_days +"  \"><div class=\"nicdark_textevidence center\"><h1 class=\"subtitle white extrasize\">"+ this.leadingZeros(data.days, 3) +"</h1><div class=\"nicdark_space20\"></div><a class=\"nicdark_btn nicdark_bg_blue small nicdark_shadow nicdark_radius white\">DAYS</a><div class=\"nicdark_space5\"></div></div></div><div class=\"grid "+ grid +" "+ display_hours +"  \"><div class=\"nicdark_textevidence center\"><h1 class=\"subtitle white extrasize\">"+ this.leadingZeros(data.hours, 2) +"</h1><div class=\"nicdark_space20\"></div><a class=\"nicdark_btn nicdark_bg_yellow small nicdark_shadow nicdark_radius white\">HOURS</a><div class=\"nicdark_space5\"></div></div></div><div class=\"grid "+ grid +" "+ display_minutes +"  \"><div class=\"nicdark_textevidence center\"><h1 class=\"subtitle white extrasize\">"+ this.leadingZeros(data.min, 2) +"</h1><div class=\"nicdark_space20\"></div><a class=\"nicdark_btn nicdark_bg_green small nicdark_shadow nicdark_radius white\">MINUTES</a><div class=\"nicdark_space5\"></div></div></div><div class=\"grid "+ grid +" "+ display_seconds +"  \"><div class=\"nicdark_textevidence center\"><h1 class=\"subtitle white extrasize\">"+ this.leadingZeros(data.sec, 2) +"</h1><div class=\"nicdark_space20\"></div><a class=\"nicdark_btn nicdark_bg_violet small nicdark_shadow nicdark_radius white\">SECONDS</a><div class=\"nicdark_space5\"></div></div></div>");
+		  }
+		});
+		
+
+	});
+</script>
+<!--custom js-->
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','../../../../../www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49425562-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>  
+{% endblock %}

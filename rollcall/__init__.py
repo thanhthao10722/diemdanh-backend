@@ -37,9 +37,14 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
     
-    #Blog
-    from . import blog
-    app.register_blueprint(blog.bp)
+    #course
+    from . import course
+    app.register_blueprint(course.bp)
     app.add_url_rule('/',endpoint='index')
 
+    from . import Fingerprint
+    app.register_blueprint(Fingerprint.bp)
+    
+    from . import DiemDanh
+    app.register_blueprint(DiemDanh.bp)
     return app

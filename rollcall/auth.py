@@ -5,7 +5,7 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from flaskr.db import get_db
+from rollcall.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -32,7 +32,7 @@ def register():
         if error is None:
             db.execute(
                 'INSERT INTO user (username, password,UName,Email) VALUES (?, ?, ?, ?)',
-                (username, password, name, email)
+                (username, generate_password_hash(password), name, email)
             )
             db.commit()
             return redirect(url_for('auth.login'))
@@ -54,11 +54,11 @@ def login():
             'SELECT * FROM user WHERE username = ?', (username,)
         ).fetchone()
 
-        print("Db pass: '{0}' <> useinput pass: '{1}'".format(user['password'], password))
+        
         if user is None:
             error = 'Incorrect username.'
-        elif user['password'] != password:
-            error = 'Incorrect password.' 
+        elif not check_password_hash(user['password'], password): 
+            error = 'Incorrect password'
         if error is None:
             session.clear()
             session['user_id'] = user['id']

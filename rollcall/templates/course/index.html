@@ -56,26 +56,21 @@
                             <ul class="nicdark_menu nicdark_margin010 nicdark_padding50">
 
                                 <li class="yellow">
-                                    <a href= "{{ url_for('blog.index') }}">Trang Chủ</a>
+                                    <a href= "{{ url_for('course.index') }}">Trang Chủ</a>
                                 </li>
                                 {% if g.user %}
                                 <li class="orange">
-                                    <a >Danh Sách Học Phần</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="{{ url_for('blog.CSDL') }}">Cơ Sở Dữ Liệu</a></li>
-                                        <li><a href="prices.html">Vi Điều Khiển</a></li>
-										<li><a href="prices.html">Lập Trình JaVa</a></li>
-										<li><a href="prices.html">Trí Tuệ Nhân Tạo</a></li>
-                                    </ul>
+                                    <a href="{{ url_for('course.show') }}">Phòng Học</a>
+    
                                 </li>
                                 {% else %}
-                                 <li class="orange"><a href = "{{ url_for('auth.login') }}" onclick="return confirmAction()" >Danh Sách Học Phần</a></li>
+                                 <li class="orange"><a href = "{{ url_for('auth.login') }}" onclick="return confirmAction()" >Phòng Học</a></li>
                                 {% endif %}
                                  {% if g.user %}
                                 <li class="red">
                                     <a>Đăng Ký Sinh Viên</a>
                                     <ul class="sub-menu">
-                                        <li><a href="{{ url_for('blog.create') }}">Theo Học Phần</a></li>									
+                                        <li><a href="{{ url_for('course.create') }}">Theo Học Phần</a></li>									
                                     </ul>
                                 </li>
                                 {% else %}
