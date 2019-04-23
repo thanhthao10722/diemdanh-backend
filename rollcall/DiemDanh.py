@@ -17,10 +17,9 @@ def DiemDanh(IDSC):
         'INNER JOIN RegisteredCourse on RegisteredCourse.IDRCourse = Class.IDRCourse '
         'INNER JOIN Course on Course.IDCourse = RegisteredCourse.IDCourse '
         'INNER JOIN ScheduledCourse on ScheduledCourse.IDRCourse = RegisteredCourse.IDRCourse '
-        
         'WHERE IDSC = ? '
         'ORDER BY FullName ',(IDSC),).fetchall()
-    for i  in list:
+    for i in list:
             get_db().execute(
                 'INSERT INTO RollCall(IDSC, MSSV, Status, Note) VALUES(?, ?, ?, ?)',
                 (i['IDSC'],i['MSSV'],'Chưa Điểm Danh','')
