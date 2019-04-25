@@ -94,6 +94,7 @@ void nhapnhay(int i, int k)
 void setup() {
   s.begin(9600);
   Serial.begin(9600);
+  connectToWifi();
   pinMode(R, OUTPUT);//den do
   pinMode(G, OUTPUT);//den xanh
   while (!Serial);  // For Yun/Leo/Micro/Zero/...
