@@ -1,5 +1,6 @@
 #include <Adafruit_Fingerprint.h>
 #include <SoftwareSerial.h>
+#include <ESP8266WiFi.h>
 
 // configuration
 // WiFi config
