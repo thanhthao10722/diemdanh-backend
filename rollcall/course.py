@@ -64,6 +64,8 @@ def delete(MSSV,IDSC):
     db.execute('DELETE FROM RollCall WHERE MSSV = ?', (MSSV,))
     db.commit()
     return redirect(url_for('DiemDanh.HocPhan',IDSC = IDSC))
+
+
 def get_class(IDSC):
     course = get_db().execute(
         'SELECT * FROM ScheduledCourse INNER JOIN RegisteredCourse on ScheduledCourse.IDRCourse = RegisteredCourse.IDRCourse '

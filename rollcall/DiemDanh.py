@@ -20,13 +20,17 @@ def DiemDanh(IDSC):
         'WHERE IDSC = ? '
         'ORDER BY FullName ',(IDSC),).fetchall()
     for i in list:
+        SV = get_db().execute(
+            'SELECT * FROM RollCall WHERE MSSV = ? AND IDSC = ?',(i['MSSV'],i['IDSC']),
+        ).fetchone()
+        if SV is None:
             get_db().execute(
                 'INSERT INTO RollCall(IDSC, MSSV, Status, Note) VALUES(?, ?, ?, ?)',
                 (i['IDSC'],i['MSSV'],'Chưa Điểm Danh','')
             )
             get_db().commit()         
     return redirect(url_for('DiemDanh.HocPhan',IDSC = IDSC))
-
+            
 
 @bp.route('/<IDSC>/HocPhan', methods=('GET', 'POST'))
 def HocPhan(IDSC):

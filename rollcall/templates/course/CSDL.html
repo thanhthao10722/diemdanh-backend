@@ -88,7 +88,6 @@
                                 {% if g.user %}
                                 <li class="red">
                                     <a href="{{ url_for('course.create') }}">Đăng Ký Sinh Viên</a>
-                                    
                                 </li>
                                 {% else %}
                                 <li class="red"><a>Đăng Ký Sinh Viên</a></li>
@@ -109,6 +108,7 @@
             <td bgcolor="white" align="center">Học Kỳ</td>
             <td bgcolor="white" align="center">Tình Trạng</td>	
             <td bgcolor="white" align="center">Ghi Chú</td>
+           
         </tr>
         {% for post in posts %}
         <tr height="40px">
@@ -119,6 +119,7 @@
             <td bgcolor="white" align="center">{{ post['Semester'] }}</td>
             <td bgcolor="white" align="center">{{ post['Status'] }}</td>
             <td bgcolor="white" align="center"><a href = "{{ url_for('course.delete', IDSC = post['IDSC'], MSSV=post['MSSV'])}}" onclick="return confirmAction()">Xóa Sinh Viên</td>
+            
         </tr>
         {% if not loop.last %}
       <hr>
