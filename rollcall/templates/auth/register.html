@@ -1,0 +1,108 @@
+<!doctype html>
+<title>{% block title %}{% endblock %}Hệ Thống Điểm Danh DHBK-DHDN</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='restyle.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='icon/favicon.ico') }}" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" id="theme" href="{{ url_for('static', filename='css/theme-default.css') }}"/>
+
+{% block header %}{% endblock %}
+{% block content %}
+<div class="registration-container">            
+      <div class="registration-box animated fadeInDown">
+        
+          <div class="registration-body">
+              <div class="registration-title"><strong>Đăng Ký</strong></div>
+              <div class="registration-subtitle"> </div>
+              <form  class="form-horizontal" method="post">
+                  
+              <h4>Thông Tin Cá Nhân</h4>
+              <div class="form-group">
+                  <div class="col-md-12">
+                      <input type="text" name ="UName"class="form-control" placeholder="Họ Tên"/>
+                  </div>
+              </div>
+                  <div class="form-group">
+                  <div class="col-md-12">
+                      <input type="text" name = "email" class="form-control" placeholder="Email"/>
+                  </div>
+              </div>
+              
+              
+              <h4>Thông Tin Tài Khoản</h4>                    
+              <div class="form-group">
+                  <div class="col-md-12">
+                      <input type="text" name= "username" class="form-control" placeholder="username"/>
+                  </div>
+              </div>                        
+              <div class="form-group">
+                  <div class="col-md-12">
+                      <input type="password" name ="password" class="form-control" placeholder="Mật Khẩu"/>
+                  </div>
+              </div>                    
+                        
+              
+              <div class="form-group push-up-30">
+                  <div class="col-md-6">
+                      <a href="#" class="btn btn-link btn-block">Đăng Nhập</a>
+                  </div>
+                  <div class="col-md-6">
+                      <button class="btn btn-danger btn-block">Đăng Ký</button>
+                  </div>
+              </div>
+              </form>
+          </div>
+          <div class="login-footer">
+              <div class="pull-left">
+                  &copy; 2019-2020 
+              </div>
+              <div class="pull-right">
+                  <a href="#">Đại Học Bách Khoa</a>
+    
+              </div>
+          </div>
+      </div>
+      
+  </div>
+    
+    <!-- COUNTERS // NOT INCLUDED IN TEMPLATE -->
+        <!-- GOOGLE -->
+        <script type="text/javascript">
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','../../../../www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-36783416-1', 'aqvatarius.com');
+          ga('send', 'pageview');
+        </script>        
+        <!-- END GOOGLE -->
+        
+        <!-- YANDEX -->
+        <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter25836617 = new Ya.Metrika({id:25836617,
+                            webvisor:true,
+                            accurateTrackBounce:true});
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+        </script>
+        <noscript><div><img src="http://mc.yandex.ru/watch/25836617" style="position:absolute; left:-9999px;" alt="" /></div></noscript>     
+        <!-- END YANDEX -->
+    <!-- END COUNTERS // NOT INCLUDED IN TEMPLATE -->
+        
+
+
+{% endblock %}
